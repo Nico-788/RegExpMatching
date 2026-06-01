@@ -783,4 +783,78 @@ public class RegExpTest {
 
 	    assertEquals(false, resultado, "ejemplo 82");
 	}
+	
+	@Test
+	void testEjemplo83() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
+	        "aaaaaaaaaaaaaaaaaaaaab"
+	    );
+
+	    assertEquals(true, resultado);
+	}
+	
+	@Test
+	void testEjemplo84() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
+	        "aaaaaaaaaaaaaaaaaaaaac"
+	    );
+
+	    assertEquals(false, resultado);
+	}
+	
+	@Test
+	void testEjemplo85() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        ".*.*.*.*.*.*.*.*x",
+	        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaax"
+	    );
+
+	    assertEquals(true, resultado);
+	}
+	
+	@Test
+	void testEjemplo86() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        "a*a*a*a*a*a*a*a*a*a*c",
+	        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+	    );
+
+	    assertEquals(false, resultado);
+	}
+	
+	@Test
+	void testEjemplo87() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        ".*.*.*.*.*.*.*.*.*.*",
+	        "aaaaaaaaaaaaaaaaaaaa"
+	    );
+
+	    assertEquals(true, resultado);
+	}
+	
+	@Test
+	void testEjemplo88() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
+	        "aaaaaaaaaaaaaaaaaaaaac"
+	    );
+	    
+	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+
+	    assertEquals(false, resultado);
+	}
 }

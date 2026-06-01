@@ -1,13 +1,14 @@
 package regexp;
 
 public class RegExp {
+	private long llamadas = 0;
 
 	public RegExp() {
 		
 	}
 
 	public boolean isMatch(String regex, String cadena) {
-
+		
 		System.out.println("\n=================================");
 		System.out.println("INICIO generarRegex1");
 		System.out.println("regex  = [" + regex + "]");
@@ -18,13 +19,31 @@ public class RegExp {
 
 		IteradorCadena reg = new IteradorCadena(regex);
 		IteradorCadena cad = new IteradorCadena(cadena);
-
+		
+		llamadas = 0;
+		
 		return generarRegex2RecLogs(reg, cad, matchsEsperadosRestantes, false);
+	}
+	
+	public long getLlamadas() {
+		return llamadas;
 	}
 
 	public boolean generarRegex2RecLogs(IteradorCadena reg, IteradorCadena cad, int matchsEsperadosRestantes,
 			boolean missMatchPrevio) {
-
+		
+		llamadas++;
+		
+		if (llamadas % 1000 == 0) {
+		    System.out.println(
+		        "LLAMADAS=" + llamadas +
+		        " reg=" + reg.getPosActual() +
+		        " cad=" + cad.getPosActual() +
+		        " restantes=" + matchsEsperadosRestantes
+		    );
+		}
+		System.out.println(llamadas); // DEBUG TEMPORAL
+				
 		Secuencia sec = new Secuencia();
 		boolean quedaPorVerificar = true; // relativo a la secuencia paralela actual (sea regex: a*bc y cadena: aaabc ->
 											// cuando llega b => quedaPorVerificar = false)
@@ -54,11 +73,12 @@ public class RegExp {
 				backTrackReg = new IteradorCadena(reg);
 				backTrackCad = new IteradorCadena(cad);
 
-				// backTrackReg.setPosActual(reg.getPosActual() + 2);
-				backTrackCad.setPosActual(cad.getPosActual() + 1);
+				if(cad.tieneSiguiente()) {
+					backTrackCad.setPosActual(cad.getPosActual() + 1);					
+				}
 
 				System.out.println("=== RECURSIÓN BACKTRACKING ===");
-				System.out.println("restantes = " + (matchsEsperadosRestantes - 1));
+				System.out.println("restantes = " + (matchsEsperadosRestantes));
 				System.out.println("missMatchActual = " + missMatchActual);
 
 				System.out.println("RAMA 1");
@@ -71,9 +91,8 @@ public class RegExp {
 				// sigSec evaluando desde pos de cadena actual
 
 				if (matchsEsperadosRestantes >= 0) {
-					return missMatchPrevio
-							|| generarRegex2RecLogs(backTrackRegRef, backTrackCad, matchsEsperadosRestantes - 1,
-									missMatchActual)
+					return ((matchsEsperadosRestantes - 1) >= 0? generarRegex2RecLogs(backTrackRegRef, backTrackCad, matchsEsperadosRestantes - 1,
+									missMatchActual) : missMatchPrevio)
 							|| generarRegex2RecLogs(backTrackReg, cad, matchsEsperadosRestantes, missMatchActual);
 				} else {
 					return missMatchPrevio;
@@ -542,7 +561,7 @@ public class RegExp {
 
 			return sec;
 		}
-
+		
 		@Override
 		public String toString() {
 			return "caracter: " + caracter + ", tipo secuencia: " + tipoSecuencia + ", cant. min: " + cantidadMinima;
