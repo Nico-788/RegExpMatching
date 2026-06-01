@@ -1,13 +1,9 @@
 package regexp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RegExp {
-	private List<Secuencia> regex;
 
 	public RegExp() {
-		regex = new ArrayList<Secuencia>();
+		
 	}
 
 	public boolean isMatch(String regex, String cadena) {
@@ -33,7 +29,6 @@ public class RegExp {
 		boolean quedaPorVerificar = true; // relativo a la secuencia paralela actual (sea regex: a*bc y cadena: aaabc ->
 											// cuando llega b => quedaPorVerificar = false)
 		boolean missMatchActual = false;
-		boolean activarBackTracking = false;
 		IteradorCadena backTrackRegRef = new IteradorCadena(reg);
 		IteradorCadena backTrackReg = null;
 		IteradorCadena backTrackCad = null;
@@ -56,7 +51,6 @@ public class RegExp {
 
 		if (sec != null && !missMatchPrevio) {
 			if (sec.getCaracter() == '.' && sec.getTipoSecuencia() >= 1 && reg.finDeCadena() == false) {
-				activarBackTracking = true;
 				backTrackReg = new IteradorCadena(reg);
 				backTrackCad = new IteradorCadena(cad);
 
@@ -200,12 +194,6 @@ public class RegExp {
 		System.out.println("RETURN TRUE");
 
 		return true;
-	}
-
-	public void mostrarRegex() {
-		for (Secuencia sec : regex) {
-			System.out.println("char: " + sec.getCaracter() + ", tipo secuencia: " + sec.getTipoSecuencia());
-		}
 	}
 
 	private static class IteradorCadena {
