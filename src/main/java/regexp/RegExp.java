@@ -76,7 +76,7 @@ public class RegExp {
 				// sec '.*' expandiendo desde una pos más de cadena
 				// sigSec evaluando desde pos de cadena actual
 
-				if (matchsEsperadosRestantes > 0) {
+				if (matchsEsperadosRestantes >= 0) {
 					return missMatchPrevio
 							|| generarRegex2RecLogs(backTrackRegRef, backTrackCad, matchsEsperadosRestantes - 1,
 									missMatchActual)

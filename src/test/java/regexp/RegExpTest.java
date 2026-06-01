@@ -610,6 +610,177 @@ public class RegExpTest {
 
 	    boolean resultado = reg.isMatch("..*.a*aaaaaa", "adfgadfgfdaaaaaaa");
 
-	    assertEquals(true, resultado, "ejemplo 64");
+	    assertEquals(true, resultado, "ejemplo 65");
+	}
+	
+	@Test
+	void testEjemplo66() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch("..*.a*a", "adfgadfgfda");
+
+	    assertEquals(true, resultado, "ejemplo 66");
+	}
+	
+	@Test
+	void testEjemplo67() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*b", "aaaaaaaaab");
+
+	    assertEquals(true, resultado, "ejemplo 67");
+	}
+	
+	@Test
+	void testEjemplo68() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*b", "aaaaaaaaac");
+
+	    assertEquals(false, resultado, "ejemplo 68");
+	}
+	
+	@Test
+	void testEjemplo69() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(".*.*.*.*b", "aaaaaaaaab");
+
+	    assertEquals(true, resultado, "ejemplo 69");
+	}
+	
+	@Test
+	void testEjemplo70() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(".*.*.*.*b", "aaaaaaaaac");
+
+	    assertEquals(false, resultado, "ejemplo 70");
+	}
+	
+	@Test
+	void testEjemplo71() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(".*a.*b.*c", "zzzazzzbzzzc");
+
+	    assertEquals(true, resultado, "ejemplo 71");
+	}
+	
+	@Test
+	void testEjemplo72() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(".*a.*b.*c", "zzzazzzczzzb");
+
+	    assertEquals(false, resultado, "ejemplo 72");
+	}
+	
+	@Test
+	void testEjemplo73() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch("a*b*c*d*e*", "");
+
+	    assertEquals(true, resultado, "ejemplo 73");
+	}
+	
+	@Test
+	void testEjemplo74() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch("a*b*c*d*e*f", "");
+
+	    assertEquals(false, resultado, "ejemplo 74");
+	}
+	
+	@Test
+	void testEjemplo75() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(".*abc", "xyzabc");
+
+	    assertEquals(true, resultado, "ejemplo 75");
+	}
+	
+	@Test
+	void testEjemplo76() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(".*abc", "xyzabx");
+
+	    assertEquals(false, resultado, "ejemplo 76");
+	}
+	
+	@Test
+	void testEjemplo77() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
+	        "aaaaaaaaaaaaaaaaaaaab"
+	    );
+
+	    assertEquals(true, resultado, "ejemplo 77");
+	}
+	
+	@Test
+	void testEjemplo78() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        "a*a*a*a*a*a*a*a*a*a*c",
+	        "aaaaaaaaaaaaaaaaab"
+	    );
+
+	    assertEquals(false, resultado, "ejemplo 78");
+	}
+	
+	@Test
+	void testEjemplo79() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        ".*.*.*.*.*",
+	        "abcdefghijklmnopqrstuvwxyz"
+	    );
+
+	    assertEquals(true, resultado, "ejemplo 79");
+	}
+	
+	@Test
+	void testEjemplo80() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        ".*a",
+	        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+	    );
+
+	    assertEquals(true, resultado, "ejemplo 80");
+	}
+	
+	@Test
+	void testEjemplo81() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        ".*b.*c.*d",
+	        "aaaaaaaaabaaaaaaaaacaaaaaaaaad"
+	    );
+
+	    assertEquals(true, resultado, "ejemplo 81");
+	}
+	
+	@Test
+	void testEjemplo82() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado = reg.isMatch(
+	        ".*b.*c.*d",
+	        "aaaaaaaaabaaaaaaaaadaaaaaaaaac"
+	    );
+
+	    assertEquals(false, resultado, "ejemplo 82");
 	}
 }
