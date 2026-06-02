@@ -82,7 +82,7 @@ public class RegExp {
 
 		if (sec != null && !missMatchPrevio) {
 			if (sec.getCaracter() == '.' && sec.getTipoSecuencia() >= 1 && reg.finDeCadena() == false) {
-				
+							
 				backTrackReg = new IteradorCadena(reg);
 				backTrackCad = new IteradorCadena(cad);
 				boolean res;
@@ -584,6 +584,18 @@ public class RegExp {
 					sec.getCantidadMinima());
 
 			return sec;
+		}
+		
+		public static int minimaRegexRequerida(IteradorCadena cad) {
+			Secuencia proxSec = new Secuencia();
+			int contador = 0;
+			proxSec = Secuencia.obtenerSiguienteSecuenciaLookAheadLogs(cad);
+			
+			while(proxSec != null && proxSec.cantidadMinima > 0) {
+				contador++;
+			}
+			
+			return contador;
 		}
 
 		@Override
