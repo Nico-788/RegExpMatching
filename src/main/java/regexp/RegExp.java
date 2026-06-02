@@ -2,13 +2,14 @@ package regexp;
 
 public class RegExp {
 	private long llamadas = 0;
+	private Boolean[][] solucionesBackTrack;
 
 	public RegExp() {
-		
+
 	}
 
 	public boolean isMatch(String regex, String cadena) {
-		
+
 		System.out.println("\n=================================");
 		System.out.println("INICIO generarRegex1");
 		System.out.println("regex  = [" + regex + "]");
@@ -19,31 +20,42 @@ public class RegExp {
 
 		IteradorCadena reg = new IteradorCadena(regex);
 		IteradorCadena cad = new IteradorCadena(cadena);
-		
+
 		llamadas = 0;
-		
+		solucionesBackTrack = new Boolean[reg.obtenerTam() + 1][cad.obtenerTam() + 1];
+
 		return generarRegex2RecLogs(reg, cad, matchsEsperadosRestantes, false);
 	}
-	
+
 	public long getLlamadas() {
 		return llamadas;
+	}
+	
+	public long getCantidadEstados() {
+		int estadosCalculados = 0;
+		
+		for (int i = 0; i < solucionesBackTrack.length; i++) {
+		    for (int j = 0; j < solucionesBackTrack[i].length; j++) {
+		        if (solucionesBackTrack[i][j] != null) {
+		            estadosCalculados++;
+		        }
+		    }
+		}
+		
+		return estadosCalculados;
 	}
 
 	public boolean generarRegex2RecLogs(IteradorCadena reg, IteradorCadena cad, int matchsEsperadosRestantes,
 			boolean missMatchPrevio) {
-		
+
 		llamadas++;
-		
+
 		if (llamadas % 1000 == 0) {
-		    System.out.println(
-		        "LLAMADAS=" + llamadas +
-		        " reg=" + reg.getPosActual() +
-		        " cad=" + cad.getPosActual() +
-		        " restantes=" + matchsEsperadosRestantes
-		    );
+			System.out.println("LLAMADAS=" + llamadas + " reg=" + reg.getPosActual() + " cad=" + cad.getPosActual()
+					+ " restantes=" + matchsEsperadosRestantes);
 		}
 		System.out.println(llamadas); // DEBUG TEMPORAL
-				
+
 		Secuencia sec = new Secuencia();
 		boolean quedaPorVerificar = true; // relativo a la secuencia paralela actual (sea regex: a*bc y cadena: aaabc ->
 											// cuando llega b => quedaPorVerificar = false)
@@ -70,11 +82,18 @@ public class RegExp {
 
 		if (sec != null && !missMatchPrevio) {
 			if (sec.getCaracter() == '.' && sec.getTipoSecuencia() >= 1 && reg.finDeCadena() == false) {
+				
 				backTrackReg = new IteradorCadena(reg);
 				backTrackCad = new IteradorCadena(cad);
+				boolean res;
 
-				if(cad.tieneSiguiente()) {
-					backTrackCad.setPosActual(cad.getPosActual() + 1);					
+				if (solucionesBackTrack[backTrackRegRef.getPosActual()][cad.getPosActual()] != null) {
+					System.out.println("MEMO -> [" + backTrackRegRef.getPosActual() + ", " + (cad.getPosActual()) + "]");
+					return solucionesBackTrack[backTrackRegRef.getPosActual()][cad.getPosActual()];
+				}
+				
+				if (cad.tieneSiguiente()) {
+					backTrackCad.setPosActual(cad.getPosActual() + 1);
 				}
 
 				System.out.println("=== RECURSIÓN BACKTRACKING ===");
@@ -82,7 +101,7 @@ public class RegExp {
 				System.out.println("missMatchActual = " + missMatchActual);
 
 				System.out.println("RAMA 1");
-				System.out.println("reg=" + reg.getPosActual() + " cad=" + backTrackCad.getPosActual());
+				System.out.println("reg=" + backTrackRegRef.getPosActual() + " cad=" + backTrackCad.getPosActual());
 
 				System.out.println("RAMA 2");
 				System.out.println("reg=" + backTrackReg.getPosActual() + " cad=" + cad.getPosActual());
@@ -91,12 +110,17 @@ public class RegExp {
 				// sigSec evaluando desde pos de cadena actual
 
 				if (matchsEsperadosRestantes >= 0) {
-					return ((matchsEsperadosRestantes - 1) >= 0? generarRegex2RecLogs(backTrackRegRef, backTrackCad, matchsEsperadosRestantes - 1,
-									missMatchActual) : missMatchPrevio)
-							|| generarRegex2RecLogs(backTrackReg, cad, matchsEsperadosRestantes, missMatchActual);
+					res = generarRegex2RecLogs(new IteradorCadena(backTrackRegRef), backTrackCad, matchsEsperadosRestantes - 1,
+									missMatchActual)
+							|| generarRegex2RecLogs(backTrackReg, new IteradorCadena(cad), matchsEsperadosRestantes, missMatchActual);
 				} else {
-					return missMatchPrevio;
+					res = missMatchPrevio;
 				}
+
+				solucionesBackTrack[backTrackRegRef.getPosActual()][cad.getPosActual()] = res;
+				System.out.println("SOL [" + backTrackRegRef.getPosActual() + ", " + (cad.getPosActual()) + "] = " + res);
+
+				return res;
 			}
 
 			while (sec != null && quedaPorVerificar && (sec.cantidadMinima > 0 || sec.getTipoSecuencia() != 0)
@@ -561,7 +585,7 @@ public class RegExp {
 
 			return sec;
 		}
-		
+
 		@Override
 		public String toString() {
 			return "caracter: " + caracter + ", tipo secuencia: " + tipoSecuencia + ", cant. min: " + cantidadMinima;

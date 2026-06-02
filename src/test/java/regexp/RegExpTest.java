@@ -857,4 +857,48 @@ public class RegExpTest {
 
 	    assertEquals(false, resultado);
 	}
+	
+	@Test
+	void testEjemplo89() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado =
+	        reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
+	                    "aaaaaaaaaaaaaaaaaaaaaaaaaac");
+
+	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+	    
+	    assertEquals(false, resultado);
+	}
+	
+	@Test
+	void testEjemplo90() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado =
+	        reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
+	                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac");
+	    
+	    // observar crecimiento del algoritmo
+	    
+	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+	    
+	    assertEquals(false, resultado);
+	}
+	
+	@Test
+	void testEjemplo91() {
+	    RegExp reg = new RegExp();
+
+	    boolean resultado =
+	        reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
+	                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac");
+	    
+	    // observar crecimiento del algoritmo y cálculo de estados
+	    
+	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+	    System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+	    
+	    assertEquals(false, resultado);
+	}
 }
