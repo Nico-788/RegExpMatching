@@ -1,6 +1,5 @@
 package app;
 
-import regexp.RegExp;
 import regexp.RegExp1;
 
 public class Main {
@@ -8,24 +7,9 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		//System.out.println(reg.isMatch(".*bc*b", "ccccccaabb"));
-		
-//		StringBuilder regex = new StringBuilder();
-//		StringBuilder cadena = new StringBuilder();
-//
-//		for(int i = 0; i < 50; i++) {
-//		    regex.append("a*");
-//		    cadena.append("a");
-//		}
-//
-//		regex.append("b");
-//		cadena.append("c");
-//
-//		System.out.println(
-//		    reg.isMatch(regex.toString(), cadena.toString())
-//		);
 		
 		RegExp1 sol = new RegExp1();
 		
