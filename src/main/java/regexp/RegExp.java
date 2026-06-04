@@ -1,8 +1,15 @@
 package regexp;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+
 public class RegExp {
 	private long llamadas = 0;
-	private Boolean[][] solucionesBackTrack;
+	private Map<Tupla, Boolean> solucionesBackTrack;
+	private String p;
+	private String s;
 
 	public RegExp() {
 
@@ -22,7 +29,7 @@ public class RegExp {
 		IteradorCadena cad = new IteradorCadena(cadena);
 
 		llamadas = 0;
-		solucionesBackTrack = new Boolean[reg.obtenerTam() + 1][cad.obtenerTam() + 1];
+		solucionesBackTrack = new HashMap<Tupla, Boolean>();
 
 		return generarRegex2RecLogs(reg, cad, matchsEsperadosRestantes, false);
 	}
@@ -34,16 +41,17 @@ public class RegExp {
 	public long getCantidadEstados() {
 		int estadosCalculados = 0;
 		
-		for (int i = 0; i < solucionesBackTrack.length; i++) {
-		    for (int j = 0; j < solucionesBackTrack[i].length; j++) {
-		        if (solucionesBackTrack[i][j] != null) {
-		            estadosCalculados++;
-		        }
-		    }
+		for (Entry<Tupla, Boolean> entry : solucionesBackTrack.entrySet()) {
+			Tupla clave = entry.getKey();
+			boolean valor = entry.getValue();
+			
+			estadosCalculados++;
 		}
 		
 		return estadosCalculados;
 	}
+	
+	
 
 	public boolean generarRegex2RecLogs(IteradorCadena reg, IteradorCadena cad, int matchsEsperadosRestantes,
 			boolean missMatchPrevio) {
@@ -85,11 +93,12 @@ public class RegExp {
 							
 				backTrackReg = new IteradorCadena(reg);
 				backTrackCad = new IteradorCadena(cad);
+				Tupla clave = new Tupla(backTrackRegRef.getPosActual(), cad.getPosActual());
 				boolean res;
 
-				if (solucionesBackTrack[backTrackRegRef.getPosActual()][cad.getPosActual()] != null) {
+				if (solucionesBackTrack.containsKey(clave)) {
 					System.out.println("MEMO -> [" + backTrackRegRef.getPosActual() + ", " + (cad.getPosActual()) + "]");
-					return solucionesBackTrack[backTrackRegRef.getPosActual()][cad.getPosActual()];
+					return solucionesBackTrack.get(clave);
 				}
 				
 				if (cad.tieneSiguiente()) {
@@ -117,7 +126,7 @@ public class RegExp {
 					res = missMatchPrevio;
 				}
 
-				solucionesBackTrack[backTrackRegRef.getPosActual()][cad.getPosActual()] = res;
+				solucionesBackTrack.put(clave, res);
 				System.out.println("SOL [" + backTrackRegRef.getPosActual() + ", " + (cad.getPosActual()) + "] = " + res);
 
 				return res;
@@ -364,71 +373,6 @@ public class RegExp {
 			cantidadMinima--;
 		}
 
-		public static Secuencia obtenerSiguienteSecuenciaLookAhead(IteradorCadena cad) {
-			Secuencia secActual = new Secuencia(), secNueva = new Secuencia();
-			int estadoSecuencia = 0; // 0:INIT 1:SECUENCIA_ACTIVA 2:CAMBIO_SECUENCIA
-
-			if (cad.posActual < 0 || cad.posActual >= cad.obtenerTam()) {
-				return null;
-			}
-
-			while (cad.posActual < cad.obtenerTam() && estadoSecuencia != 2) {
-				System.out.println("ejoo");
-				secNueva = Secuencia.reducirSiguienteParDeCaracteres(cad);
-
-				if (estadoSecuencia == 0) {
-					secActual.setCaracter(secNueva.getCaracter());
-					secActual.setTipoSecuencia(secNueva.getTipoSecuencia());
-					secActual.setCantidadMinima(secNueva.getCantidadMinima());
-					estadoSecuencia = 1;
-				} else if (secNueva.getCaracter() == secActual.getCaracter()) {
-					secActual.simplificarParDeSecuencias(secNueva);
-				} else {
-					estadoSecuencia = 2;
-				}
-
-				if (estadoSecuencia != 2) {
-					cad.incrementarPosActual();
-					if (secNueva.getTipoSecuencia() == 1) {
-						// ya que leí caracter y *
-						cad.incrementarPosActual();
-					}
-				}
-			}
-
-			return secActual;
-		}
-
-		private static Secuencia reducirSiguienteParDeCaracteres(IteradorCadena cad) {
-			if (cad.posActual < 0 || cad.posActual >= cad.obtenerTam()) {
-				return null;
-			}
-
-			Secuencia sec = new Secuencia();
-			int tipo;
-
-			if (cad.obtenerActual() == '*') {
-				sec.setCaracter(' ');
-				// secuencia no válida
-				return sec;
-			}
-
-			sec.setCaracter(cad.obtenerActual());
-
-			if (cad.tieneSiguiente()) {
-				if (cad.verSiguiente() != '*') {
-					tipo = 0;
-					sec.incrementarCantidadMinima();
-				} else {
-					tipo = 1;
-				}
-
-				sec.setTipoSecuencia(tipo);
-			}
-
-			return sec;
-		}
-
 		private void simplificarParDeSecuencias(Secuencia otra) {
 			String resultante = "" + tipoSecuencia + otra.tipoSecuencia;
 
@@ -602,5 +546,51 @@ public class RegExp {
 		public String toString() {
 			return "caracter: " + caracter + ", tipo secuencia: " + tipoSecuencia + ", cant. min: " + cantidadMinima;
 		}
+	}
+	
+	private static class Tupla {
+		private int first;
+		private int second;
+		
+		public Tupla(int f, int s) {
+			first = f;
+			second = s;
+		}
+		
+		public int getFirst() {
+			return first;
+		}
+		
+		public void setFirst(int first) {
+			this.first = first;
+		}
+		
+		public int getSecond() {
+			return second;
+		}
+		
+		public void setSecond(int second) {
+			this.second = second;
+		}
+		
+		@Override
+	    public boolean equals(Object obj) {
+	        // 1. Comprobar si es el mismo objeto
+	        if (this == obj) return true;
+
+	        // 2. Comprobar si el objeto es nulo o de otra clase
+	        if (obj == null || getClass() != obj.getClass()) return false;
+
+	        // 3. Convertir y comparar atributos
+	        Tupla other = (Tupla) obj;
+	        return first == other.first &&
+	               second == other.second;
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        // Siempre que sobrescribas equals, sobrescribe hashCode
+	        return Objects.hash(first, second);
+	    }
 	}
 }
