@@ -1,6 +1,5 @@
 package app;
 
-import regexp.RegExp;
 import regexp.RegExp1;
 
 public class Main {
