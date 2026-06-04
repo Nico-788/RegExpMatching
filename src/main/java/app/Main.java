@@ -1,17 +1,12 @@
 package app;
 
-import regexp.RegExp1;
+import regexp.MatcherRegex;
 
 public class Main {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws Exception {
+        MatcherRegex mr = new MatcherRegex();
 
-		RegExp1 reg = new RegExp1();
-
-		//System.out.println(reg.isMatch(".*bc*b", "ccccccaabb"));
-		
-		System.out.println(reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
-	                    "aaaaaaaaaaaaaaaaaaaaaaaaaac"));
-	}
+        System.out.println(mr.isMatch("aabcd", ".*aa*bcd.*"));
+    }
 }
