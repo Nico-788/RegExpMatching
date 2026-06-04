@@ -4,901 +4,1135 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegExpTest {
-	
+
 	@Test
 	void testEjemplo1() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("a", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 1");
 	}
-	
+
 	@Test
 	void testEjemplo2() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("aa", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 2");
 	}
-	
+
 	@Test
 	void testEjemplo3() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("a*", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 3");
 	}
-	
+
 	@Test
 	void testEjemplo4() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("a*a*", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 4");
 	}
-	
+
 	@Test
 	void testEjemplo5() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 5");
 	}
-	
+
 	@Test
 	void testEjemplo6() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aa", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 6");
 	}
-	
+
 	@Test
 	void testEjemplo7() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 7");
 	}
-	
+
 	@Test
 	void testEjemplo8() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 8");
 	}
-	
+
 	@Test
 	void testEjemplo9() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 9");
 	}
-	
+
 	@Test
 	void testEjemplo10() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*b", "aab");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 10");
 	}
-	
+
 	@Test
 	void testEjemplo11() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*b*", "aab");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 11");
 	}
-	
+
 	@Test
 	void testEjemplo12() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*c*a*b*", "");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 12");
 	}
-	
+
 	@Test
 	void testEjemplo13() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*c*a*b*c", "");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 13");
 	}
-	
+
 	@Test
 	void testEjemplo14() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "aab");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 14");
 	}
-	
+
 	@Test
 	void testEjemplo15() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "aabc");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 15");
 	}
-	
+
 	@Test
 	void testEjemplo16() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "aa");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 16");
 	}
-	
+
 	@Test
 	void testEjemplo17() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "aac");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 17");
 	}
-	
+
 	@Test
 	void testEjemplo18() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "aaac");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 18");
 	}
-	
+
 	@Test
 	void testEjemplo19() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "acaac");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 19");
 	}
-	
+
 	@Test
 	void testEjemplo20() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "acac");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(false, resultado, "ejemplo 20");
 	}
-	
+
 	@Test
 	void testEjemplo21() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "caac");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 21");
 	}
-	
+
 	@Test
 	void testEjemplo22() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "ccccaac");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 22");
 	}
-	
+
 	@Test
 	void testEjemplo23() {
 
-		RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch("c*aac*a*c*", "aacccaaaccc");
 
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
 		assertEquals(true, resultado, "ejemplo 22");
 	}
-	
+
 	@Test
 	void testEjemplo24() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".", "a");
+		boolean resultado = reg.isMatch(".", "a");
 
-	    assertEquals(true, resultado, "ejemplo 24");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 24");
 	}
 
 	@Test
 	void testEjemplo25() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
 		boolean resultado = reg.isMatch(".", "ab");
 
-	    assertEquals(false, resultado, "ejemplo 25");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 25");
 	}
 
 	@Test
 	void testEjemplo26() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*", "");
+		boolean resultado = reg.isMatch(".*", "");
 
-	    assertEquals(true, resultado, "ejemplo 26");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 26");
 	}
 
 	@Test
 	void testEjemplo27() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*", "abcdef");
+		boolean resultado = reg.isMatch(".*", "abcdef");
 
-	    assertEquals(true, resultado, "ejemplo 27");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 27");
 	}
 
 	@Test
 	void testEjemplo28() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*c", "abc");
+		boolean resultado = reg.isMatch(".*c", "abc");
 
-	    assertEquals(true, resultado, "ejemplo 28");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 28");
 	}
 
 	@Test
 	void testEjemplo29() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*c", "abd");
+		boolean resultado = reg.isMatch(".*c", "abd");
 
-	    assertEquals(false, resultado, "ejemplo 29");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 29");
 	}
 
 	@Test
 	void testEjemplo30() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a.*", "a");
+		boolean resultado = reg.isMatch("a.*", "a");
 
-	    assertEquals(true, resultado, "ejemplo 30");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 30");
 	}
 
 	@Test
 	void testEjemplo31() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a.*", "abcdef");
+		boolean resultado = reg.isMatch("a.*", "abcdef");
 
-	    assertEquals(true, resultado, "ejemplo 31");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 31");
 	}
 
 	@Test
 	void testEjemplo32() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("ab.*f", "abcdef");
+		boolean resultado = reg.isMatch("ab.*f", "abcdef");
 
-	    assertEquals(true, resultado, "ejemplo 32");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 32");
 	}
 
 	@Test
 	void testEjemplo33() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("ab.*g", "abcdef");
+		boolean resultado = reg.isMatch("ab.*g", "abcdef");
 
-	    assertEquals(false, resultado, "ejemplo 33");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 33");
 	}
-	
+
 	@Test
 	void testEjemplo34() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*b", "b");
+		boolean resultado = reg.isMatch("a*b", "b");
 
-	    assertEquals(true, resultado, "ejemplo 34");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 34");
 	}
 
 	@Test
 	void testEjemplo35() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*b", "aaab");
+		boolean resultado = reg.isMatch("a*b", "aaab");
 
-	    assertEquals(true, resultado, "ejemplo 35");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 35");
 	}
 
 	@Test
 	void testEjemplo36() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*b", "aaac");
+		boolean resultado = reg.isMatch("a*b", "aaac");
 
-	    assertEquals(false, resultado, "ejemplo 36");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 36");
 	}
-	
+
 	@Test
 	void testEjemplo37() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*a", "ba");
+		boolean resultado = reg.isMatch(".*a", "ba");
 
-	    assertEquals(true, resultado, "ejemplo 37");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 37");
 	}
 
 	@Test
 	void testEjemplo38() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*a", "baa");
+		boolean resultado = reg.isMatch(".*a", "baa");
 
-	    assertEquals(true, resultado, "ejemplo 38");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 38");
 	}
 
 	@Test
 	void testEjemplo39() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*a", "bbb");
+		boolean resultado = reg.isMatch(".*a", "bbb");
 
-	    assertEquals(false, resultado, "ejemplo 39");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 39");
 	}
-	
+
 	@Test
 	void testEjemplo40() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("mis*is*p*.", "mississippi");
+		boolean resultado = reg.isMatch("mis*is*p*.", "mississippi");
 
-	    assertEquals(false, resultado, "ejemplo 40");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 40");
 	}
-	
+
 	@Test
 	void testEjemplo41() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("mis*is*ip*.", "mississippi");
+		boolean resultado = reg.isMatch("mis*is*ip*.", "mississippi");
 
-	    assertEquals(true, resultado, "ejemplo 41");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 41");
 	}
 
 	@Test
 	void testEjemplo42() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("c*a*b", "aab");
+		boolean resultado = reg.isMatch("c*a*b", "aab");
 
-	    assertEquals(true, resultado, "ejemplo 42");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 42");
 	}
-	
+
 	@Test
 	void testEjemplo43() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*a", "aaa");
+		boolean resultado = reg.isMatch("a*a", "aaa");
 
-	    assertEquals(true, resultado, "ejemplo 43");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 43");
 	}
-	
+
 	@Test
 	void testEjemplo44() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("c*ca*b", "aab");
+		boolean resultado = reg.isMatch("c*ca*b", "aab");
 
-	    assertEquals(false, resultado, "ejemplo 44");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 44");
 	}
-	
+
 	@Test
 	void testEjemplo45() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("c*ccca*b", "caab");
+		boolean resultado = reg.isMatch("c*ccca*b", "caab");
 
-	    assertEquals(false, resultado, "ejemplo 45");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 45");
 	}
-	
+
 	@Test
 	void testEjemplo46() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("c*ca*b", "caab");
+		boolean resultado = reg.isMatch("c*ca*b", "caab");
 
-	    assertEquals(true, resultado, "ejemplo 46");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 46");
 	}
-	
+
 	@Test
 	void testEjemplo47() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("c*ca*b", "cccccaab");
+		boolean resultado = reg.isMatch("c*ca*b", "cccccaab");
 
-	    assertEquals(true, resultado, "ejemplo 47");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 47");
 	}
-	
+
 	@Test
 	void testEjemplo48() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("c*ca*b", "aab");
+		boolean resultado = reg.isMatch("c*ca*b", "aab");
 
-	    assertEquals(false, resultado, "ejemplo 48");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 48");
 	}
-	
+
 	@Test
 	void testEjemplo49() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("cccc*ccca*b", "ccccccaab");
+		boolean resultado = reg.isMatch("cccc*ccca*b", "ccccccaab");
 
-	    assertEquals(true, resultado, "ejemplo 49");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 49");
 	}
-	
+
 	@Test
 	void testEjemplo50() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("cccc*a*b", "ccccccaab");
+		boolean resultado = reg.isMatch("cccc*a*b", "ccccccaab");
 
-	    assertEquals(true, resultado, "ejemplo 50");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 50");
 	}
-	
+
 	@Test
 	void testEjemplo51() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("", "");
+		boolean resultado = reg.isMatch("", "");
 
-	    assertEquals(true, resultado, "ejemplo 51");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 51");
 	}
-	
+
 	@Test
 	void testEjemplo52() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("", "a");
+		boolean resultado = reg.isMatch("", "a");
 
-	    assertEquals(false, resultado, "ejemplo 52");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 52");
 	}
-	
+
 	@Test
 	void testEjemplo53() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a", "");
+		boolean resultado = reg.isMatch("a", "");
 
-	    assertEquals(false, resultado, "ejemplo 53");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 53");
 	}
-	
+
 	@Test
 	void testEjemplo54() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*", "");
+		boolean resultado = reg.isMatch("a*", "");
 
-	    assertEquals(true, resultado, "ejemplo 54");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 54");
 	}
-	
+
 	@Test
 	void testEjemplo55() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".", "");
+		boolean resultado = reg.isMatch(".", "");
 
-	    assertEquals(true, resultado, "ejemplo 55");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 55");
 	}
-	
+
 	@Test
 	void testEjemplo56() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*", "");
+		boolean resultado = reg.isMatch(".*", "");
 
-	    assertEquals(true, resultado, "ejemplo 56");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 56");
 	}
-	
+
 	@Test
 	void testEjemplo57() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*", "adfgadfgfd");
+		boolean resultado = reg.isMatch(".*", "adfgadfgfd");
 
-	    assertEquals(true, resultado, "ejemplo 57");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 57");
 	}
-	
+
 	@Test
 	void testEjemplo58() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("e.*", "adfgadfgfd");
+		boolean resultado = reg.isMatch("e.*", "adfgadfgfd");
 
-	    assertEquals(false, resultado, "ejemplo 58");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 58");
 	}
-	
+
 	@Test
 	void testEjemplo59() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*", "adfgadfgfd");
+		boolean resultado = reg.isMatch("..*", "adfgadfgfd");
 
-	    assertEquals(true, resultado, "ejemplo 59");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 59");
 	}
-	
+
 	@Test
 	void testEjemplo60() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.", "adfgadfgfd");
+		boolean resultado = reg.isMatch("..*.", "adfgadfgfd");
 
-	    assertEquals(true, resultado, "ejemplo 60");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 60");
 	}
-	
+
 	@Test
 	void testEjemplo61() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.a", "adfgadfgfd");
+		boolean resultado = reg.isMatch("..*.a", "adfgadfgfd");
 
-	    assertEquals(false, resultado, "ejemplo 61");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 61");
 	}
-	
+
 	@Test
 	void testEjemplo62() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.a*", "adfgadfgfd");
+		boolean resultado = reg.isMatch("..*.a*", "adfgadfgfd");
 
-	    assertEquals(true, resultado, "ejemplo 62");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 62");
 	}
-	
+
 	@Test
 	void testEjemplo63() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.a*a", "adfgadfgfd");
+		boolean resultado = reg.isMatch("..*.a*a", "adfgadfgfd");
 
-	    assertEquals(false, resultado, "ejemplo 63");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 63");
 	}
-	
+
 	@Test
 	void testEjemplo64() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.a*aaaaa", "adfgadfgfdaaaa");
+		boolean resultado = reg.isMatch("..*.a*aaaaa", "adfgadfgfdaaaa");
 
-	    assertEquals(false, resultado, "ejemplo 64");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 64");
 	}
-	
+
 	@Test
 	void testEjemplo65() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.a*aaaaaa", "adfgadfgfdaaaaaaa");
+		boolean resultado = reg.isMatch("..*.a*aaaaaa", "adfgadfgfdaaaaaaa");
 
-	    assertEquals(true, resultado, "ejemplo 65");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 65");
 	}
-	
+
 	@Test
 	void testEjemplo66() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("..*.a*a", "adfgadfgfda");
+		boolean resultado = reg.isMatch("..*.a*a", "adfgadfgfda");
 
-	    assertEquals(true, resultado, "ejemplo 66");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 66");
 	}
-	
+
 	@Test
 	void testEjemplo67() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*b", "aaaaaaaaab");
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*b", "aaaaaaaaab");
 
-	    assertEquals(true, resultado, "ejemplo 67");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 67");
 	}
-	
+
 	@Test
 	void testEjemplo68() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*b", "aaaaaaaaac");
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*b", "aaaaaaaaac");
 
-	    assertEquals(false, resultado, "ejemplo 68");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 68");
 	}
-	
+
 	@Test
 	void testEjemplo69() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*.*.*.*b", "aaaaaaaaab");
+		boolean resultado = reg.isMatch(".*.*.*.*b", "aaaaaaaaab");
 
-	    assertEquals(true, resultado, "ejemplo 69");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 69");
 	}
-	
+
 	@Test
 	void testEjemplo70() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*.*.*.*b", "aaaaaaaaac");
+		boolean resultado = reg.isMatch(".*.*.*.*b", "aaaaaaaaac");
 
-	    assertEquals(false, resultado, "ejemplo 70");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 70");
 	}
-	
+
 	@Test
 	void testEjemplo71() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*a.*b.*c", "zzzazzzbzzzc");
+		boolean resultado = reg.isMatch(".*a.*b.*c", "zzzazzzbzzzc");
 
-	    assertEquals(true, resultado, "ejemplo 71");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 71");
 	}
-	
+
 	@Test
 	void testEjemplo72() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*a.*b.*c", "zzzazzzczzzb");
+		boolean resultado = reg.isMatch(".*a.*b.*c", "zzzazzzczzzb");
 
-	    assertEquals(false, resultado, "ejemplo 72");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 72");
 	}
-	
+
 	@Test
 	void testEjemplo73() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*b*c*d*e*", "");
+		boolean resultado = reg.isMatch("a*b*c*d*e*", "");
 
-	    assertEquals(true, resultado, "ejemplo 73");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 73");
 	}
-	
+
 	@Test
 	void testEjemplo74() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch("a*b*c*d*e*f", "");
+		boolean resultado = reg.isMatch("a*b*c*d*e*f", "");
 
-	    assertEquals(false, resultado, "ejemplo 74");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 74");
 	}
-	
+
 	@Test
 	void testEjemplo75() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*abc", "xyzabc");
+		boolean resultado = reg.isMatch(".*abc", "xyzabc");
 
-	    assertEquals(true, resultado, "ejemplo 75");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 75");
 	}
-	
+
 	@Test
 	void testEjemplo76() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(".*abc", "xyzabx");
+		boolean resultado = reg.isMatch(".*abc", "xyzabx");
 
-	    assertEquals(false, resultado, "ejemplo 76");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 76");
 	}
-	
+
 	@Test
 	void testEjemplo77() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
-	        "aaaaaaaaaaaaaaaaaaaab"
-	    );
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b", "aaaaaaaaaaaaaaaaaaaab");
 
-	    assertEquals(true, resultado, "ejemplo 77");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 77");
 	}
-	
+
 	@Test
 	void testEjemplo78() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        "a*a*a*a*a*a*a*a*a*a*c",
-	        "aaaaaaaaaaaaaaaaab"
-	    );
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*a*a*c", "aaaaaaaaaaaaaaaaab");
 
-	    assertEquals(false, resultado, "ejemplo 78");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 78");
 	}
-	
+
 	@Test
 	void testEjemplo79() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        ".*.*.*.*.*",
-	        "abcdefghijklmnopqrstuvwxyz"
-	    );
+		boolean resultado = reg.isMatch(".*.*.*.*.*", "abcdefghijklmnopqrstuvwxyz");
 
-	    assertEquals(true, resultado, "ejemplo 79");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 79");
 	}
-	
+
 	@Test
 	void testEjemplo80() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        ".*a",
-	        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-	    );
+		boolean resultado = reg.isMatch(".*a", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
-	    assertEquals(true, resultado, "ejemplo 80");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 80");
 	}
-	
+
 	@Test
 	void testEjemplo81() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        ".*b.*c.*d",
-	        "aaaaaaaaabaaaaaaaaacaaaaaaaaad"
-	    );
+		boolean resultado = reg.isMatch(".*b.*c.*d", "aaaaaaaaabaaaaaaaaacaaaaaaaaad");
 
-	    assertEquals(true, resultado, "ejemplo 81");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado, "ejemplo 81");
 	}
-	
+
 	@Test
 	void testEjemplo82() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        ".*b.*c.*d",
-	        "aaaaaaaaabaaaaaaaaadaaaaaaaaac"
-	    );
+		boolean resultado = reg.isMatch(".*b.*c.*d", "aaaaaaaaabaaaaaaaaadaaaaaaaaac");
 
-	    assertEquals(false, resultado, "ejemplo 82");
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado, "ejemplo 82");
 	}
-	
+
 	@Test
 	void testEjemplo83() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
-	        "aaaaaaaaaaaaaaaaaaaaab"
-	    );
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b", "aaaaaaaaaaaaaaaaaaaaab");
 
-	    assertEquals(true, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo84() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
-	        "aaaaaaaaaaaaaaaaaaaaac"
-	    );
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b", "aaaaaaaaaaaaaaaaaaaaac");
 
-	    assertEquals(false, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo85() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        ".*.*.*.*.*.*.*.*x",
-	        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaax"
-	    );
+		boolean resultado = reg.isMatch(".*.*.*.*.*.*.*.*x", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaax");
 
-	    assertEquals(true, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo86() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        "a*a*a*a*a*a*a*a*a*a*c",
-	        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-	    );
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*a*a*c", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab");
 
-	    assertEquals(false, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo87() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        ".*.*.*.*.*.*.*.*.*.*",
-	        "aaaaaaaaaaaaaaaaaaaa"
-	    );
+		boolean resultado = reg.isMatch(".*.*.*.*.*.*.*.*.*.*", "aaaaaaaaaaaaaaaaaaaa");
 
-	    assertEquals(true, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(true, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo88() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado = reg.isMatch(
-	        "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b",
-	        "aaaaaaaaaaaaaaaaaaaaac"
-	    );
-	    
-	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		boolean resultado = reg.isMatch("a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b", "aaaaaaaaaaaaaaaaaaaaac");
 
-	    assertEquals(false, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo89() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado =
-	        reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
-	                    "aaaaaaaaaaaaaaaaaaaaaaaaaac");
+		boolean resultado = reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*b", "aaaaaaaaaaaaaaaaaaaaaaaaaac");
 
-	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
-	    
-	    assertEquals(false, resultado);
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo90() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado =
-	        reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
-	                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac");
-	    
-	    // observar crecimiento del algoritmo
-	    
-	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
-	    
-	    assertEquals(false, resultado);
+		boolean resultado = reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
+				"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac");
+
+		// observar crecimiento del algoritmo
+
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado);
 	}
-	
+
 	@Test
 	void testEjemplo91() {
-	    RegExp reg = new RegExp();
+		RegExp1 reg = new RegExp1();
 
-	    boolean resultado =
-	        reg.isMatch(".*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*a.*b",
-	                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac");
-	    
-	    // observar crecimiento del algoritmo y cálculo de estados
-	    
-	    System.out.println("cantidad de llamadas: " + reg.getLlamadas());
-	    System.out.println("cantidad de estados: " + reg.getCantidadEstados());
-	    
-	    assertEquals(false, resultado);
+		StringBuilder regex = new StringBuilder();
+		StringBuilder cadena = new StringBuilder();
+
+		for (int i = 0; i < 50; i++) {
+			regex.append("a*");
+			cadena.append("a");
+		}
+
+		regex.append("b");
+		cadena.append("c");
+
+		boolean resultado = reg.isMatch(regex.toString(), cadena.toString());
+
+		// observar crecimiento del algoritmo
+
+		System.out.println("cantidad de llamadas: " + reg.getLlamadas());
+		System.out.println("cantidad de estados: " + reg.getCantidadEstados());
+
+		assertEquals(false, resultado);
 	}
 }
