@@ -19,6 +19,12 @@ public class RegExp1 {
 
 		regex = p;
 		cadena = s;
+		
+		System.out.println("\n=================================");
+		System.out.println("INICIO generarRegex1");
+		System.out.println("regex  = [" + regex + "]");
+		System.out.println("cadena = [" + cadena + "]");
+		System.out.println("=================================\n");
 
 		llamadas = 0;
 		solucionesBackTrack = new HashMap<Tupla, Boolean>();
